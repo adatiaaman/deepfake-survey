@@ -11,12 +11,15 @@ export default function AuthProvider({children}) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
 
-    function signup(email, password,username) {
+    function signup(email, password,username , age) {
         return auth.createUserWithEmailAndPassword(email, password).then(
             (user)=>{
-                db.collection("Client").doc(user.user.uid).set({
-                    email: email,
-                    name: username,
+                db.collection("Surveys").doc(user.user.uid).set({
+                    "About": {         
+                        email: email,
+                        name: username,
+                        age: age 
+                    }
                 })
             }              
         )

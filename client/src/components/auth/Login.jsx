@@ -50,7 +50,7 @@ const Login = () => {
         await handleForgotPassword();
       } else {
         await login(email, password);
-        navigate('/dashboard');
+        navigate('/survey');
       }
     } catch {
       alert("Failed to Log in");
