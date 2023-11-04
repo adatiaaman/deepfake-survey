@@ -16,16 +16,20 @@ const getVideos = async (req, res) => {
 
         const files = await getStorage().bucket(bucketName).getFiles({ prefix: `${clientIdMap.get(clientId)}/` })
 
-        const downloadURLs = [];
-        downloadURLs.push({"group_id" : `${clientIdMap.get(clientId)}` })
+        let downloadURLs = {};
+        downloadURLs["group_id"] = `${clientIdMap.get(clientId)}` ;
+
+        const urls = [];
 
         for (const file of files[0]) {
             const [url] = await file.getSignedUrl({
                 action: 'read',
                 expires: '01-01-2100'
             });
-            downloadURLs.push(url);
+            urls.push(url);
         }
+    
+        downloadURLs["urls"] = urls;
 
         res.status(200).send(downloadURLs);
 
