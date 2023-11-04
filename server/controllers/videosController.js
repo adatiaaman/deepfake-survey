@@ -1,4 +1,6 @@
+'use strict';
 
+const { db } = require('../db');
 const { getStorage, getDownloadURL } = require('firebase-admin/storage');
 
 let last_index = -1;
@@ -10,8 +12,11 @@ const getVideos = async (req, res) => {
         const bucketName = 'deepfake-survey.appspot.com';
 
         if (!clientIdMap.has(clientId)) {
-            clientIdMap.set(clientId, last_index + 1);
+            clientIdMap.set(clientId, (last_index + 1)%10);
             last_index = (last_index + 1) % 10
+            await db.collection('Surveys').doc(clientId).set({
+                "group_id": `${clientIdMap.get(clientId)}`
+            }, { merge: true });
         }
 
         const files = await getStorage().bucket(bucketName).getFiles({ prefix: `${clientIdMap.get(clientId)}/` })
@@ -21,7 +26,6 @@ const getVideos = async (req, res) => {
 
         const urls = [];
         for (const file of files[0]) {
-            
             const durl = await getDownloadURL(file);
             urls.push(durl);
         }

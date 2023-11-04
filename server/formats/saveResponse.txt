@@ -1,7 +1,6 @@
 {
   "clientId" : "xyz1",
   "resp" : {
-    "group_id"  : {"group_id":0},
     "details" : {
       "vid_12" : {
         "start_ts" : 1,
