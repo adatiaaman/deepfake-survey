@@ -26,6 +26,7 @@ const getVideos = async (req, res) => {
             urls.push(durl);
         }
     
+        urls.shift()
         downloadURLs["urls"] = urls;
 
         res.status(200).send(downloadURLs);
