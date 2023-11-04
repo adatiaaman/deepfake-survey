@@ -20,13 +20,10 @@ const getVideos = async (req, res) => {
         downloadURLs["group_id"] = `${clientIdMap.get(clientId)}` ;
 
         const urls = [];
-
         for (const file of files[0]) {
-            const [url] = await file.getSignedUrl({
-                action: 'read',
-                expires: '01-01-2100'
-            });
-            urls.push(url);
+            
+            const durl = await getDownloadURL(file);
+            urls.push(durl);
         }
     
         downloadURLs["urls"] = urls;
