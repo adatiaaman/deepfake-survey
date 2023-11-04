@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 const videos = require('./routes/videos');
 const response = require('./routes/response');
+const about = require('./routes/about');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 
 app.use('/videos', videos.routes);
 app.use('/response', response.routes);
+app.use('/about', about.routes);
 
 app.get('/', (req,res) => {
     res.send('Welcome to the Portfolio Gen App');

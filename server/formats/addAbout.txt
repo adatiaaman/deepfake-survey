@@ -1,0 +1,8 @@
+{
+    "clientId": "xyz1",
+    "about": {
+        "name": "John Doe",
+        "email": "john@gmail.com",
+        "age": 14
+    }
+}
