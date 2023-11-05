@@ -18,7 +18,7 @@ app.use('/response', response.routes);
 app.use('/about', about.routes);
 
 app.get('/', (req,res) => {
-    res.send('Welcome to the Portfolio Gen App');
+    res.send('Welcome to the Deepfake Survey');
 });
 
 app.listen(3000, () => console.log('App is listening on url http://localhost:' + 3000));
