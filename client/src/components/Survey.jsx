@@ -163,7 +163,8 @@ const Survey = ({ videoList }) => {
       {videoWatched && (
       <div className="mb-4 flex flex-col items-center justify-center">
         <label className="block mb-2 text-center">
-        Please inform us whether you believe the entire video is real. <br></br> If not, kindly specify which portion you suspect to be edited or manipulated, using the options provided below.
+        Please indicate whether the provided video is real or fake. <br></br>
+        If you think it is fake, kindly specify the exact timestamps between which the deepfake content appears.
         </label>
         <div className="flex mb-2">
           <label className="mr-4">

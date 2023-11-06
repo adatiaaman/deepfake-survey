@@ -9,7 +9,9 @@ const Landing = () => {
           Deepfake Survey
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 text-center">
-          Help us by filling out this survey
+          Help us by filling out this survey <br></br>
+          In this survey, please inform us whether you believe if the videos is real or fake. <br></br> 
+          If not, kindly specify which portion you suspect to be edited or manipulated.
         </p>
         <div className="flex justify-center">
           {/* <a
