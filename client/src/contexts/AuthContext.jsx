@@ -1,5 +1,5 @@
 import React, {useContext,useState,useEffect} from 'react'
-import {auth,db} from '../config/firebaseConfig.jsx'
+import {auth, db} from '../config/firebaseConfig.jsx'
 
 const AuthContext = React.createContext()
 
@@ -11,8 +11,35 @@ export default function AuthProvider({children}) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
 
-    function signup(email, username, age, gender) {
-        return auth.createUserWithEmailAndPassword(email, "123456").then(
+    async function signup(email, username, age, gender) {
+        
+        const usersRef = await db.collection('Surveys');
+        let checker = 0;
+    
+        const q = await usersRef.where('About.email', '==', email).get()
+          .then((querySnapshot) => {
+            
+            if (!querySnapshot.empty) {
+              // User with email found, you can access their data
+              querySnapshot.forEach(async (doc) => {
+                const videoIndex = await doc.data().details.current_video_index;
+                if (videoIndex === 19) {
+                    checker = -1;
+                }
+                else{
+                    localStorage.setItem('currentVideoIndex', videoIndex.toString());
+                }
+                // console.log(videoIndex)
+              });
+            } else {
+              console.log('User with email not found.');
+            }
+          })
+          .catch((error) => {
+            console.error('Error fetching user data:', error);
+          });
+            
+        auth.createUserWithEmailAndPassword(email, "123456").then(
             (user)=>{
                 db.collection("Surveys").doc(user.user.uid).set({
                     "About": {         
@@ -24,6 +51,9 @@ export default function AuthProvider({children}) {
                 })
             }              
         )
+        
+        return checker;
+    
     }
 
     function login(email, password) {

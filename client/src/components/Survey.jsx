@@ -10,7 +10,10 @@ const base_url = "https://deepfake-backend.onrender.com";
 
 const Survey = ({ videoList }) => {
 
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(() => {
+    const savedIndex = parseInt(localStorage.getItem('currentVideoIndex'));
+    return isNaN(savedIndex) ? 0 : savedIndex;
+  });
   const [sliderValues, setSliderValues] = useState([0, 100]); // Initialize with default values (0% to 100%)
   const [videoType, setvideoType] = useState(null);
   const [videoDuration, setVideoDuration] = useState(null);
@@ -46,6 +49,7 @@ const Survey = ({ videoList }) => {
       "clientId" : clientId,
       "resp" : {
         "details"  : {
+          "current_video_index": currentVideoIndex,
           [video_id] : video_details
         }
       }
@@ -106,6 +110,8 @@ const Survey = ({ videoList }) => {
 
 
   useEffect(() => {
+    localStorage.setItem('currentVideoIndex', currentVideoIndex.toString());
+
     if (videoList[currentVideoIndex]) {
       const videoUrl = videoList[currentVideoIndex];
       const video = new Video(videoUrl);

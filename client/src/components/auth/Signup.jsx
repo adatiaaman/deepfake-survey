@@ -53,13 +53,19 @@ const SignupPage = () => {
       setIsLoading(true);
       try {
         setError('');
+        localStorage.setItem('currentVideoIndex', 0);
 
         // Assuming your signup function takes name, email, and password as arguments
-        await signup(email, name , age, gender);
-
-        notifySuccess("Account created successfully");
-        await login(email, "123456");
-        navigate('/survey');
+        const checker = await signup(email, name , age, gender);
+        
+        if (checker == -1) {
+          setError('Survey already filled.');
+        }
+        else {
+          // notifySuccess("Account created successfully");
+          await login(email, "123456");
+          navigate('/survey');
+        }
         
       } catch {
         setError('Failed to create an account');
