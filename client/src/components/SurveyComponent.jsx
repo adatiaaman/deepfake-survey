@@ -40,7 +40,7 @@ const SurveyComponent = () => {
       {videoList.length > 0 ? (
         <Survey videoList={videoList} />
       ) : (
-        <div className="text-center mb-2 text-xl">Loading...<br></br>Survey will start soon</div>
+        <div className="text-center mb-2 text-xl">Loading... (It might take a couple of seconds)<br></br>Survey will start soon</div>
       )}
     </div>
   );
