@@ -12,17 +12,17 @@ const Landing = () => {
           Help us by filling out this survey
         </p>
         <div className="flex justify-center">
-          <a
+          {/* <a
             href="/login"
             className="inline-block bg-indigo-500 text-white rounded-lg px-8 py-4 text-lg font-medium transition duration-300 hover:bg-indigo-700 mr-4"
           >
             Login
-          </a>
+          </a> */}
           <a
             href="/signup"
             className="inline-block bg-gray-700 text-white rounded-lg px-8 py-4 text-lg font-medium transition duration-300 hover:bg-gray-900"
           >
-            Signup
+            Start Survey
           </a>
         </div>
       </div>

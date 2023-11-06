@@ -20,8 +20,6 @@ const Router = () => {
             <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/survey" element={<PrivateRoute><SurveyComponent/></PrivateRoute>} />
-                {/* <Route path="/experiences" element={<PrivateRoute><Experiences/></PrivateRoute>} />
-                <Route path="/projects" element={<PrivateRoute><Projects/></PrivateRoute>} /> */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
             </Routes>

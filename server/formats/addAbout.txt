@@ -3,6 +3,7 @@
     "about": {
         "name": "John Doe",
         "email": "john@gmail.com",
-        "age": 14
+        "age": 14,
+        "gender": "M"
     }
 }

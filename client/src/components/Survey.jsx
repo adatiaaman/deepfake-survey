@@ -14,6 +14,9 @@ const Survey = ({ videoList }) => {
   const [sliderValues, setSliderValues] = useState([0, 100]); // Initialize with default values (0% to 100%)
   const [videoType, setvideoType] = useState(null);
   const [videoDuration, setVideoDuration] = useState(null);
+  const [videoWatched, setVideoWatched] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [viewCount, setViewCount] = useState(0);
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -22,16 +25,19 @@ const Survey = ({ videoList }) => {
     const start_ts = (sliderValues[0] / 100) * videoDuration;
     const end_ts = (sliderValues[1] / 100) * videoDuration; 
     const clientId = currentUser.uid;
-    const video_id = `vid_${currentVideoIndex}`
-
+    const match = videoList[currentVideoIndex].match(/%2F([^%]+)\.mp4\?alt/)[1]
+    const video_id = match
+    
     const video_details_fake = {
       "start_ts" : start_ts,
       "end_ts" : end_ts,
-      "video_type" : videoType
+      "video_type" : videoType,
+      "view_count" : viewCount
     }
 
     const video_details_real = {
-      "video_type" : "real"
+      "video_type" : "real",
+      "view_count" : viewCount
     }
 
     const video_details = videoType === 'fake' ? video_details_fake : video_details_real;
@@ -59,13 +65,13 @@ const Survey = ({ videoList }) => {
     }
 
     resetValues();
-
   }
 
   const handlePrevious = () => {
     if (currentVideoIndex > 0) {
       handleSubmit();
       setCurrentVideoIndex(currentVideoIndex - 1);
+      setVideoWatched(false);
     }
   };
 
@@ -73,6 +79,7 @@ const Survey = ({ videoList }) => {
     if (currentVideoIndex + 1 < videoList.length) {
       handleSubmit();
       setCurrentVideoIndex(currentVideoIndex + 1);
+      setVideoWatched(false);
     }
     else{
       handleSubmit();
@@ -90,6 +97,8 @@ const Survey = ({ videoList }) => {
     setvideoType(null);
     setSliderValues([0, 100]);
     setVideoDuration(null);
+    setViewCount(0);
+    setIsVideoPlaying(false);
   };
 
   const start_ts = (sliderValues[0] / 100) * videoDuration;
@@ -101,22 +110,54 @@ const Survey = ({ videoList }) => {
       const videoUrl = videoList[currentVideoIndex];
       const video = new Video(videoUrl);
       video.getMetadata().then((metadata) => {
-
         setVideoDuration(metadata.duration);
+        setVideoWatched(false); 
       });
     }
   }, [currentVideoIndex, videoList]);
 
+  const handleVideoEnd = () => {
+    setVideoWatched(true); 
+    setIsVideoPlaying(false);
+  }
+
+  const onSeeked = () => {
+    setIsVideoPlaying(false);
+  }
+  const onPlayerStart = () => {
+    if(isVideoPlaying == false) {
+      setIsVideoPlaying(true);
+      setViewCount(viewCount + 1);
+    }
+  }
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-lavender">
+      <div className="text-center mb-2 text-xl">
+        Video {currentVideoIndex + 1} / {videoList.length}
+      </div>
       <div className="max-w-screen-md mb-8">
-        <VideoPlayer key={videoList[currentVideoIndex]} videoUrl={videoList[currentVideoIndex]} />
+        <VideoPlayer key={videoList[currentVideoIndex]} 
+          videoUrl={videoList[currentVideoIndex]} 
+          onEnded={handleVideoEnd}
+          onSeeked={onSeeked}
+          onPlayerStart={onPlayerStart}
+        />
       </div>
 
-      <div className="mb-4">
-        <label className="block mb-2">
-          Select Video Type:
+      {!videoWatched && (
+        <div className="mb-4 flex flex-col items-center justify-center">
+        <label className="block mb-2 text-center">
+        Please wait until the video is finished then the questions will appear.
+        </label>
+        
+      </div>
+      )}
+
+      {videoWatched && (
+      <div className="mb-4 flex flex-col items-center justify-center">
+        <label className="block mb-2 text-center">
+        Please inform us whether you believe the entire video is real. <br></br> If not, kindly specify which portion you suspect to be edited or manipulated, using the options provided below.
         </label>
         <div className="flex mb-2">
           <label className="mr-4">
@@ -141,10 +182,11 @@ const Survey = ({ videoList }) => {
           </label>
         </div>
       </div>
+      )}
 
 
       {videoType === 'fake' && (
-        <div className="mb-4" style={{ width: '500px' }}>
+        <div className="mb-4" style={{ width: '400px' }}>
           <Slider
             min={0}
             max={100}

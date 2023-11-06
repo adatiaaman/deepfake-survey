@@ -9,7 +9,7 @@ const SurveyComponent = () => {
   const [videoList, setVideoList] = useState([]);
   const { currentUser } = useAuth();
 
-  console.log(currentUser);
+  // console.log(currentUser);
 
   useEffect(() => {
 
@@ -25,7 +25,7 @@ const SurveyComponent = () => {
           }),
         });
         const data = await response.json();
-        console.log(data['urls']);
+        // console.log(data['urls']);
         setVideoList(data['urls']);
       } catch (error) {
         console.error('Error fetching data:', error);

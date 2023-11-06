@@ -8,10 +8,11 @@ const SignupPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [age, setAge] = useState('');
+  const [gender, setGender] = useState('');
   const [password, setPassword] = useState('');
   const [confPassword, setConfPassword] = useState('');
   const [error, setError] = useState('');
-  const { signup } = useAuth();
+  const { signup, login } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -27,14 +28,17 @@ const SignupPage = () => {
     setAge(event.target.value);
   };
 
+  const handleGenderChange = (event) => {
+    setGender(event.target.value);
+  }
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+  // const handlePasswordChange = (event) => {
+  //   setPassword(event.target.value);
+  // };
 
-  const handleConfPasswordChange = (event) => {
-    setConfPassword(event.target.value);
-  };
+  // const handleConfPasswordChange = (event) => {
+  //   setConfPassword(event.target.value);
+  // };
 
   const notifySuccess = (message) => {
     toast.success(message);
@@ -51,10 +55,11 @@ const SignupPage = () => {
         setError('');
 
         // Assuming your signup function takes name, email, and password as arguments
-        await signup(email, password, name , age);
+        await signup(email, name , age, gender);
 
         notifySuccess("Account created successfully");
-        navigate('/login');
+        await login(email, "123456");
+        navigate('/survey');
         
       } catch {
         setError('Failed to create an account');
@@ -108,8 +113,21 @@ const SignupPage = () => {
               required
             />
           </div>
-
           <div className="mb-6">
+            <label htmlFor="email" className="block text-gray-800 font-medium mb-2">
+              Gender(M/F/O):
+            </label>
+            <input
+              type="text"
+              id="gender"
+              value={gender}
+              onChange={handleGenderChange}
+              className="w-full py-2 px-4 bg-gray-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required
+            />
+          </div>
+
+          {/* <div className="mb-6">
             <label htmlFor="password" className="block text-gray-800 font-medium mb-2">
               Password:
             </label>
@@ -121,8 +139,8 @@ const SignupPage = () => {
               className="w-full py-2 px-4 bg-gray-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               required
             />
-          </div>
-          <div className="mb-6">
+          </div> */}
+          {/* <div className="mb-6">
             <label htmlFor="confpassword" className="block text-gray-800 font-medium mb-2">
               Confirm Password:
             </label>
@@ -134,26 +152,26 @@ const SignupPage = () => {
               className="w-full py-2 px-4 bg-gray-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               required
             />
-          </div>
+          </div> */}
 
           <div className="flex justify-center mb-6">
             <button
               type="submit"
               className="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-700 focus:outline-none transition duration-300"
             >
-              Sign up
+              Begin
             </button>
           </div>
         </form>
 
-        <div className="text-center">
+        {/* <div className="text-center">
           <p className="text-gray-800">
             Already have an account?{' '}
             <a href="/login" className="text-indigo-500 font-medium">
               Log in
             </a>
           </p>
-        </div>
+        </div> */}
         {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
       </div>
 
