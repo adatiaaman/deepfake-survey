@@ -57,12 +57,14 @@ const SignupPage = () => {
 
         // Assuming your signup function takes name, email, and password as arguments
         const checker = await signup(email, name , age, gender);
+        console.log('ch', checker);
         
         if (checker == -1) {
           setError('Survey already filled.');
         }
         else {
           // notifySuccess("Account created successfully");
+          console.log('111');
           await login(email, "123456");
           navigate('/survey');
         }

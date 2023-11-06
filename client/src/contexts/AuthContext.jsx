@@ -16,18 +16,20 @@ export default function AuthProvider({children}) {
         const usersRef = await db.collection('Surveys');
         let checker = 0;
     
-        const q = await usersRef.where('About.email', '==', email).get()
+        const q = usersRef.where('About.email', '==', email).get()
           .then((querySnapshot) => {
-            
             if (!querySnapshot.empty) {
               // User with email found, you can access their data
+              console.log('444');
               querySnapshot.forEach(async (doc) => {
+                console.log('555');
                 const videoIndex = await doc.data().details.current_video_index;
+                console.log('vi', videoIndex)
                 if (videoIndex === 19) {
                     checker = -1;
                 }
                 else{
-                    localStorage.setItem('currentVideoIndex', videoIndex.toString());
+                    localStorage.setItem('currentVideoIndex', (videoIndex + 1).toString());
                 }
                 // console.log(videoIndex)
               });
@@ -35,11 +37,8 @@ export default function AuthProvider({children}) {
               console.log('User with email not found.');
             }
           })
-          .catch((error) => {
-            console.error('Error fetching user data:', error);
-          });
-            
-        auth.createUserWithEmailAndPassword(email, "123456").then(
+        console.log('222');
+        await auth.createUserWithEmailAndPassword(email, "123456").then(
             (user)=>{
                 db.collection("Surveys").doc(user.user.uid).set({
                     "About": {         
@@ -50,8 +49,10 @@ export default function AuthProvider({children}) {
                     }
                 })
             }              
-        )
-        
+        ).catch(() => {
+            console.log('User presnt');
+        })
+        console.log('333');
         return checker;
     
     }
