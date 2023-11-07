@@ -12,7 +12,7 @@ const Landing = () => {
           Help us by filling out this survey <br></br>
           In this survey, you will be watching real and fake videos. The fake videos may have some manipulation at certain timestamps. <br></br>
           If you find that there is some editing/manipulation done to a video aka it is a deepfake, please select the option. <br></br>
-          Also, mention what timestamp of the video between which you think the video contains edit.
+          Also, mention timestamps of the video between which you think the video contains deepfake content.
         </p>
         <div className="flex justify-center">
           {/* <a
