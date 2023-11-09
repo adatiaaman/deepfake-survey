@@ -3,7 +3,7 @@
 const { db } = require('../db');
 const { getStorage, getDownloadURL } = require('firebase-admin/storage');
 
-let last_index = -1;
+// let last_index = -1;
 let clientIdMap = new Map();
 
 const getVideos = async (req, res) => {
@@ -12,10 +12,14 @@ const getVideos = async (req, res) => {
         const bucketName = 'deepfake-survey.appspot.com';
 
         if (!clientIdMap.has(clientId)) {
+            let last_index = await (await db.collection('GroupId').doc('fix').get()).data()["last_index"]
             clientIdMap.set(clientId, (last_index + 1)%10);
             last_index = (last_index + 1) % 10
             await db.collection('Surveys').doc(clientId).set({
                 "group_id": `${clientIdMap.get(clientId)}`
+            }, { merge: true });
+            await db.collection('GroupId').doc('fix').set({
+                "last_index": last_index
             }, { merge: true });
         }
 
