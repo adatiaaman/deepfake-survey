@@ -47,7 +47,7 @@ export default function AuthProvider({children}) {
                         age: age,
                         gender: gender
                     }
-                })
+                }, { merge: true })
             }              
         ).catch(() => {
             console.log('User presnt');

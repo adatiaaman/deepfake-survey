@@ -82,22 +82,9 @@ const SignupPage = () => {
         <h2 className="text-2xl text-center text-gray-800 mb-8">Sign up</h2>
 
         <form onSubmit={handleSubmit}>
-          <div className="mb-6">
-            <label htmlFor="name" className="block text-gray-800 font-medium mb-2">
-              Name:
-            </label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={handleNameChange}
-              className="w-full py-2 px-4 bg-gray-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              required
-            />
-          </div>
-          <div className="mb-6">
+        <div className="mb-6">
             <label htmlFor="email" className="block text-gray-800 font-medium mb-2">
-              Email:
+              Email*:
             </label>
             <input
               type="email"
@@ -109,8 +96,22 @@ const SignupPage = () => {
             />
           </div>
           <div className="mb-6">
+            <label htmlFor="name" className="block text-gray-800 font-medium mb-2">
+              Name (Optional):
+            </label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={handleNameChange}
+              className="w-full py-2 px-4 bg-gray-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              
+            />
+          </div>
+          
+          <div className="mb-6">
             <label htmlFor="email" className="block text-gray-800 font-medium mb-2">
-              Age:
+              Age (Optional):
             </label>
             <input
               type="number"
@@ -118,12 +119,12 @@ const SignupPage = () => {
               value={age}
               onChange={handleAgeChange}
               className="w-full py-2 px-4 bg-gray-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              required
+              
             />
           </div>
           <div className="mb-6">
             <label htmlFor="email" className="block text-gray-800 font-medium mb-2">
-              Gender(M/F/O):
+              Gender(M/F/O) (Optional):
             </label>
             <input
               type="text"
@@ -131,7 +132,7 @@ const SignupPage = () => {
               value={gender}
               onChange={handleGenderChange}
               className="w-full py-2 px-4 bg-gray-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              required
+              
             />
           </div>
 
