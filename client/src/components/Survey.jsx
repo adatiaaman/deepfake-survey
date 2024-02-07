@@ -18,7 +18,7 @@ const Survey = ({ videoList }) => {
   const [videoType, setvideoType] = useState(null);
   const [videoDuration, setVideoDuration] = useState(null);
   const [videoWatched, setVideoWatched] = useState(false);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [viewCount, setViewCount] = useState(0);
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
@@ -102,7 +102,7 @@ const Survey = ({ videoList }) => {
     setSliderValues([0, 100]);
     setVideoDuration(null);
     setViewCount(0);
-    setIsVideoPlaying(true);
+    setIsVideoPlaying(false);
   };
 
   const start_ts = (sliderValues[0] / 100) * videoDuration;
@@ -114,7 +114,9 @@ const Survey = ({ videoList }) => {
 
     if (videoList[currentVideoIndex]) {
       const videoUrl = videoList[currentVideoIndex];
+      console.log(videoUrl);
       const video = new Video(videoUrl);
+      console.log(video);
       video.getMetadata().then((metadata) => {
         setVideoDuration(metadata.duration);
         setVideoWatched(false); 

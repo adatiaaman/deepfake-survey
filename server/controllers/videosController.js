@@ -27,6 +27,7 @@ const getVideos = async (req, res) => {
 
         let downloadURLs = {};
         downloadURLs["group_id"] = `${clientIdMap.get(clientId)}` ;
+        console.log(downloadURLs["group_id"]);
 
         const urls = [];
         for (const file of files[0]) {
@@ -36,6 +37,7 @@ const getVideos = async (req, res) => {
     
         urls.shift()
         downloadURLs["urls"] = urls;
+        console.log(downloadURLs["urls"]);
 
         res.status(200).send(downloadURLs);
 

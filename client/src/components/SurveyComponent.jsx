@@ -25,7 +25,7 @@ const SurveyComponent = () => {
           }),
         });
         const data = await response.json();
-        // console.log(data['urls']);
+        console.log(data['urls']);
         setVideoList(data['urls']);
       } catch (error) {
         console.error('Error fetching data:', error);
