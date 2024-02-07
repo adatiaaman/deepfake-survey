@@ -11,7 +11,7 @@ export default function AuthProvider({children}) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
 
-    async function signup(email, username, age, gender) {
+    async function signup(email, username, signature) {
         
         const usersRef = await db.collection('Surveys');
         let checker = 0;
@@ -44,8 +44,7 @@ export default function AuthProvider({children}) {
                     "About": {         
                         email: email,
                         name: username,
-                        age: age,
-                        gender: gender
+                        signature: signature
                     }
                 }, { merge: true })
             }              

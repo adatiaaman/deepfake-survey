@@ -138,8 +138,8 @@ const Survey = ({ videoList }) => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-lavender">
-      <div className="text-center mb-2 text-xl">
+    <div className="flex flex-col items-center justify-center h-screen bg-white">
+      <div className="text-center mb-2 text-xl text-black">
         Video {currentVideoIndex + 1} / {videoList.length}
       </div>
       <div className="max-w-screen-md mb-8">
@@ -153,7 +153,7 @@ const Survey = ({ videoList }) => {
 
       {!videoWatched && (
         <div className="mb-4 flex flex-col items-center justify-center">
-        <label className="block mb-2 text-center">
+        <label className="block mb-2 text-center text-black">
         Please wait until the video is finished then the questions will appear.
         </label>
         
@@ -162,12 +162,12 @@ const Survey = ({ videoList }) => {
 
       {videoWatched && (
       <div className="mb-4 flex flex-col items-center justify-center">
-        <label className="block mb-2 text-center">
+        <label className="block mb-2 text-center text-black">
         Please indicate whether the provided video is real or fake. <br></br>
         If you think it is fake, kindly specify the exact timestamps between which the deepfake content appears.
         </label>
         <div className="flex mb-2">
-          <label className="mr-4">
+          <label className="mr-4 text-black">
             <input
               type="radio"
               value="real"
@@ -177,7 +177,7 @@ const Survey = ({ videoList }) => {
             />
             Real
           </label>
-          <label>
+          <label className='text-black'>
             <input
               type="radio"
               value="fake"
@@ -219,7 +219,7 @@ const Survey = ({ videoList }) => {
                   height: '12px',
                   width: '12px',
                   borderRadius: '50%',
-                  backgroundColor: '#fff',
+                  backgroundColor: 'black',
                   // boxShadow: '0px 0px 0px rgba(0, 0, 0, 0.1)',
                   outline: 'none',
                 }}
@@ -227,7 +227,7 @@ const Survey = ({ videoList }) => {
             )}
           />
 
-          <div className="flex justify-between mt-4">
+          <div className="flex justify-between mt-4 text-black">
             <span>{start_ts.toFixed(2)}s</span>
             <span>{end_ts.toFixed(2)}s</span>
           </div>

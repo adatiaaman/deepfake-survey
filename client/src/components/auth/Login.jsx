@@ -50,7 +50,7 @@ const Login = () => {
         await handleForgotPassword();
       } else {
         await login(email, password);
-        navigate('/survey');
+        navigate('/survey'); // '/consent'
       }
     } catch {
       alert("Failed to Log in");

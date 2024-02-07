@@ -66,7 +66,7 @@ const SignupPage = () => {
           // notifySuccess("Account created successfully");
           console.log('111');
           await login(email, "123456");
-          navigate('/survey');
+          navigate('/survey'); // '/consent'
         }
         
       } catch {
@@ -97,7 +97,7 @@ const SignupPage = () => {
           </div>
           <div className="mb-6">
             <label htmlFor="name" className="block text-gray-800 font-medium mb-2">
-              Name (Optional):
+              Name*:
             </label>
             <input
               type="text"
@@ -105,7 +105,7 @@ const SignupPage = () => {
               value={name}
               onChange={handleNameChange}
               className="w-full py-2 px-4 bg-gray-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              
+              required
             />
           </div>
           
