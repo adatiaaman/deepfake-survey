@@ -18,7 +18,7 @@ const Survey = ({ videoList }) => {
   const [videoType, setvideoType] = useState(null);
   const [videoDuration, setVideoDuration] = useState(null);
   const [videoWatched, setVideoWatched] = useState(false);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
   const [viewCount, setViewCount] = useState(0);
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
@@ -102,7 +102,7 @@ const Survey = ({ videoList }) => {
     setSliderValues([0, 100]);
     setVideoDuration(null);
     setViewCount(0);
-    setIsVideoPlaying(false);
+    setIsVideoPlaying(true);
   };
 
   const start_ts = (sliderValues[0] / 100) * videoDuration;
@@ -138,8 +138,8 @@ const Survey = ({ videoList }) => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-white">
-      <div className="text-center mb-2 text-xl text-black">
+    <div className="flex flex-col items-center justify-center h-screen bg-lavender">
+      <div className="text-center mb-2 text-xl">
         Video {currentVideoIndex + 1} / {videoList.length}
       </div>
       <div className="max-w-screen-md mb-8">
@@ -153,7 +153,7 @@ const Survey = ({ videoList }) => {
 
       {!videoWatched && (
         <div className="mb-4 flex flex-col items-center justify-center">
-        <label className="block mb-2 text-center text-black">
+        <label className="block mb-2 text-center">
         Please wait until the video is finished then the questions will appear.
         </label>
         
@@ -162,12 +162,12 @@ const Survey = ({ videoList }) => {
 
       {videoWatched && (
       <div className="mb-4 flex flex-col items-center justify-center">
-        <label className="block mb-2 text-center text-black">
+        <label className="block mb-2 text-center">
         Please indicate whether the provided video is real or fake. <br></br>
         If you think it is fake, kindly specify the exact timestamps between which the deepfake content appears.
         </label>
         <div className="flex mb-2">
-          <label className="mr-4 text-black">
+          <label className="mr-4">
             <input
               type="radio"
               value="real"
@@ -177,7 +177,7 @@ const Survey = ({ videoList }) => {
             />
             Real
           </label>
-          <label className='text-black'>
+          <label>
             <input
               type="radio"
               value="fake"
@@ -219,7 +219,7 @@ const Survey = ({ videoList }) => {
                   height: '12px',
                   width: '12px',
                   borderRadius: '50%',
-                  backgroundColor: 'black',
+                  backgroundColor: '#fff',
                   // boxShadow: '0px 0px 0px rgba(0, 0, 0, 0.1)',
                   outline: 'none',
                 }}
