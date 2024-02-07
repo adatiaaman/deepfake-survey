@@ -46,6 +46,10 @@ const Consent = () => {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        if (signature === null) {
+            setError('Please provide your signature.');
+            return;
+        }
         if (password !== confPassword) {
             return setError('Passwords do not match');
         }
@@ -185,9 +189,9 @@ const Consent = () => {
                     <div className="flex justify-center mb-6">
                         <button
                             type="submit"
-                            className={`inline-block bg-gray-700 text-white rounded-lg px-8 py-4 text-lg font-medium transition duration-300 ${detectDeepfakes && useInPapers ? 'hover:bg-gray-900' : 'cursor-not-allowed opacity-50'
+                            className={`inline-block bg-gray-700 text-white rounded-lg px-8 py-4 text-lg font-medium transition duration-300 ${detectDeepfakes && useInPapers && signature ? 'hover:bg-gray-900' : 'cursor-not-allowed opacity-50'
                                 }`}
-                            disabled={!detectDeepfakes || !useInPapers}
+                            disabled={!detectDeepfakes || !useInPapers || signature === null}
                         >
                             Begin
                         </button>
