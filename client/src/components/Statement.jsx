@@ -83,7 +83,7 @@ const Statement = () => {
                 <div className='flex justify-center mb-6'>
                 <a className='bg-gray-700 text-white rounded-lg px-4 py-2 text-lg font-medium mb-6' href={ExplanatoryStatementHumanEthics} target="_blank"
                     rel="noreferrer">
-                    View Original Explanatory Statement Form
+                    View Explanatory Statement Document
                 </a>
             </div>
 
