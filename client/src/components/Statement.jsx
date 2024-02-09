@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import { useAuth } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+
+import ExplanatoryStatementHumanEthics from '../ExplanatoryStatementHumanEthics.pdf';
 
 const Statement = () => {
 
@@ -79,6 +79,14 @@ const Statement = () => {
                     Thank you, <br />
                     Dr Kalin Stefanov
                 </p>
+
+                <div className='flex justify-center mb-6'>
+                <a className='bg-gray-700 text-white rounded-lg px-4 py-2 text-lg font-medium mb-6' href={ExplanatoryStatementHumanEthics} target="_blank"
+                    rel="noreferrer">
+                    View Original Explanatory Statement Form
+                </a>
+            </div>
+
                 <div className="flex justify-center">
                     <a
                         href="/consent"
@@ -86,8 +94,6 @@ const Statement = () => {
                     >
                         Continue
                     </a>
-
-
                 </div>
             </div>
         </div>
