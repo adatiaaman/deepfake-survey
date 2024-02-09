@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import SignatureCanvas from 'react-signature-canvas';
-import ConsentFormHumanEthics  from '../ConsentFormHumanEthics.pdf';
+import ConsentFormHumanEthics from '../ConsentFormHumanEthics.pdf';
 
 const Consent = () => {
     const [name, setName] = useState('');
@@ -128,16 +128,16 @@ const Consent = () => {
                 </table>
 
                 <p className="text-lg sm:text-m md:text-l text-red-300 mb-12">
-                    *It is necessary to agree to consent messages to proceed.  
+                    *It is necessary to agree to consent messages to proceed.
                 </p>
 
-                <a className='bg-gray-700 text-white rounded-lg px-4 py-2 text-lg font-medium mb-6' href={ConsentFormHumanEthics} target="_blank"
+                {/* <a className='bg-gray-700 text-white rounded-lg px-4 py-2 text-lg font-medium mb-6' href={ConsentFormHumanEthics} target="_blank"
                     rel="noreferrer">
                     View Original Consent Form
-                </a> 
-                
-                <br></br>
-                <br></br>
+                </a> */}
+
+                {/* <br></br>
+                <br></br> */}
 
                 <form onSubmit={handleSubmit}>
                     <div className="mb-6">
@@ -186,7 +186,15 @@ const Consent = () => {
                         </button>
                     </div>
 
+                    <div className='flex justify-center mb-6'>
+                        <a className='bg-gray-700 text-white rounded-lg px-4 py-2 text-lg font-medium mb-6' href={ConsentFormHumanEthics} target="_blank"
+                            rel="noreferrer">
+                            View Original Consent Form
+                        </a>
+                    </div>
+
                     <div className="flex justify-center mb-6">
+
                         <button
                             type="submit"
                             className={`inline-block bg-gray-700 text-white rounded-lg px-8 py-4 text-lg font-medium transition duration-300 ${detectDeepfakes && useInPapers && signature ? 'hover:bg-gray-900' : 'cursor-not-allowed opacity-50'

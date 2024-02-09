@@ -22,7 +22,7 @@ const Landing = () => {
             Login
           </a> */}
           <a
-            href="/consent"
+            href="/statement"
             className="inline-block bg-gray-700 text-white rounded-lg px-8 py-4 text-lg font-medium transition duration-300 hover:bg-gray-900"
           >
             Start Survey
