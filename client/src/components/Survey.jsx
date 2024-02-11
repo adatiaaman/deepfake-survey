@@ -89,7 +89,7 @@ const Survey = ({ videoList }) => {
       handleSubmit();
       alert("Survey Completed");
       logout();
-      navigate('/');
+      navigate('/complete');
     }
   };
 
