@@ -195,7 +195,7 @@ const Survey = ({ videoList }) => {
 
 
       {videoType === 'fake' && (
-        <div className="mb-4" style={{ width: '400px' }}>
+        <div className="mb-4" style={{ width: '370px' }}>
           <Slider
             min={0}
             max={100}
@@ -229,7 +229,7 @@ const Survey = ({ videoList }) => {
             )}
           />
 
-          <div className="flex justify-between mt-4 text-black">
+          <div className="flex justify-between mt-4 text-white">
             <span>{start_ts.toFixed(2)}s</span>
             <span>{end_ts.toFixed(2)}s</span>
           </div>
