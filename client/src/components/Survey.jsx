@@ -19,6 +19,7 @@ const Survey = ({ videoList }) => {
   const [videoDuration, setVideoDuration] = useState(null);
   const [videoWatched, setVideoWatched] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [sliderChanged, setSliderChanged] = useState(false);
   const [viewCount, setViewCount] = useState(0);
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
@@ -94,6 +95,7 @@ const Survey = ({ videoList }) => {
   };
 
   const handleSliderChange = (values) => {
+    setSliderChanged(true);
     setSliderValues(values);
   };
 
@@ -247,6 +249,7 @@ const Survey = ({ videoList }) => {
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={handleNext}
+          disabled={videoType === 'fake' && !sliderChanged}
         >
           {currentVideoIndex === 19 ? 'Submit' : 'Next'}
         </button>
