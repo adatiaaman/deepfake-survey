@@ -34,12 +34,11 @@ const Statement = () => {
                     •	To compare the average human performance on this task with the performance of a developed algorithm for automatic detection and temporal localisation of fake content in videos. <br />
                     <br />
 
-                    You will be asked to watch 10 short videos, each with an approximate duration of 20 seconds. Some of the videos will contain one fake segment. Your goal will be to decide whether there is a fake segment in each video, and if so, mark the beginning and end of that fake segment. The study will take approximately 10 minutes to complete. At the end of the study, you will receive an aggregated score of your performance on the presented 10 videos. <br /><br />
+                    You will be asked to watch 20 short videos, each with an approximate duration of 20 seconds. Some of the videos will contain one fake segment. Your goal will be to decide whether there is a fake segment in each video, and if so, mark the beginning and end of that fake segment. The study will take approximately 10 minutes to complete. <br /><br />
 
                     This is a one-time participation invitation and there will be no follow-up interviews or surveys. The study will be carried out online and will not require face-to-face or virtual meetings. <br /><br />
 
-                    We will not record any audio or video data. The study will capture only the answers to the above questions regarding the presented 10 videos. <br />
-
+                    We will not record any audio or video data. The study will capture only the answers to the above questions regarding the presented 20 videos. <br />
 
 
                     <br /><b>Why were you invited for this research?</b><br />

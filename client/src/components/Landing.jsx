@@ -9,10 +9,10 @@ const Landing = () => {
           Deepfake Survey
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 text-center">
-          Help us by filling out this survey <br></br>
-          In this survey, you will be watching real and fake videos. The fake videos may have some manipulation at certain timestamps. <br></br>
-          If you find that there is some editing/manipulation done to a video aka it is a deepfake, please select the option. <br></br>
-          Also, mention timestamps of the video between which you think the video contains deepfake content.
+          Please help us by filling out this survey <br></br>
+          You will watch real and fake videos. The fake videos include manipulations at certain time locations. 
+          If you think the video has been modified, please select the option deepfake. 
+          In that case, please also specify the beginning and end time location of the fake content.
         </p>
         <div className="flex justify-center">
           {/* <a
