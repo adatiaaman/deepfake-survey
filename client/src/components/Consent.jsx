@@ -142,7 +142,7 @@ const Consent = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="mb-6">
                         <label htmlFor="email" className="text-lg sm:text-l md:text-xl text-gray-300 mb-12">
-                            Email:
+                            Email (Monash):
                         </label>
                         <input
                             type="email"

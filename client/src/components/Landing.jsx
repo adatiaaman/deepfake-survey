@@ -9,7 +9,8 @@ const Landing = () => {
           Deepfake Survey
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 text-center">
-          Please help us by filling out this survey <br></br>
+          Please help us by filling out this survey, and <span className="text-red-500 font-bold">get 10$ coupon</span>! 
+          <br></br>
           You will watch real and fake videos. The fake videos include manipulations at certain time locations. 
           If you think the video has been modified, please select the option deepfake. 
           In that case, please also specify the beginning and end time location of the fake content.
