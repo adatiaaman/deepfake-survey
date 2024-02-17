@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { Circles } from 'react-loading-icons'
 
 import Survey from './Survey';
 
@@ -40,7 +41,17 @@ const SurveyComponent = () => {
       {videoList.length > 0 ? (
         <Survey videoList={videoList} />
       ) : (
-        <div className="text-center mb-2 text-xl">Loading... (It might take a couple of seconds)<br></br>Survey will start soon</div>
+        <div className="flex flex-col container h-screen justify-center items-center bg-lavender">
+          <div className="text-center mb-2 text-xl">
+            <center>
+            <Circles />
+            </center>
+            <br />
+            Loading... <br /><br />
+            Fetching all the videos, it might take around a minute. <br />
+            Survey will start soon
+          </div>
+        </div>
       )}
     </div>
   );
